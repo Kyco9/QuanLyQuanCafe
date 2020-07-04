@@ -10,16 +10,12 @@ using System.Windows.Forms;
 
 namespace QuanLyQuanCafe
 {
-    public partial class fTableManager : Form
+    public partial class fAccountProfile : Form
     {
-        public fTableManager()
+        public fAccountProfile()
         {
             InitializeComponent();
         }
 
-        private void đăngXuâtToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
     }
 }
