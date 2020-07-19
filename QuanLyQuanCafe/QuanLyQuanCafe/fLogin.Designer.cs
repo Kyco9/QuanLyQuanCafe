@@ -32,8 +32,8 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.txbPassWord = new System.Windows.Forms.Label();
+            this.txbPassWord = new System.Windows.Forms.TextBox();
+            this.labelPass = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txbUserName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,6 +55,7 @@
             // 
             // btnExit
             // 
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.Font = new System.Drawing.Font("Arial", 10F);
             this.btnExit.Location = new System.Drawing.Point(351, 108);
             this.btnExit.Name = "btnExit";
@@ -77,31 +78,31 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.textBox2);
             this.panel3.Controls.Add(this.txbPassWord);
+            this.panel3.Controls.Add(this.labelPass);
             this.panel3.Location = new System.Drawing.Point(3, 55);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(464, 46);
             this.panel3.TabIndex = 1;
             // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(140, 7);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(312, 26);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.UseSystemPasswordChar = true;
-            // 
             // txbPassWord
             // 
-            this.txbPassWord.AutoSize = true;
-            this.txbPassWord.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbPassWord.Location = new System.Drawing.Point(3, 10);
+            this.txbPassWord.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPassWord.Location = new System.Drawing.Point(140, 7);
             this.txbPassWord.Name = "txbPassWord";
-            this.txbPassWord.Size = new System.Drawing.Size(88, 19);
-            this.txbPassWord.TabIndex = 0;
-            this.txbPassWord.Text = "Mật khẩu: ";
+            this.txbPassWord.Size = new System.Drawing.Size(312, 26);
+            this.txbPassWord.TabIndex = 1;
+            this.txbPassWord.UseSystemPasswordChar = true;
+            // 
+            // labelPass
+            // 
+            this.labelPass.AutoSize = true;
+            this.labelPass.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPass.Location = new System.Drawing.Point(3, 10);
+            this.labelPass.Name = "labelPass";
+            this.labelPass.Size = new System.Drawing.Size(88, 19);
+            this.labelPass.TabIndex = 0;
+            this.labelPass.Text = "Mật khẩu: ";
             // 
             // panel2
             // 
@@ -156,8 +157,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label txbPassWord;
+        private System.Windows.Forms.TextBox txbPassWord;
+        private System.Windows.Forms.Label labelPass;
         private System.Windows.Forms.TextBox txbUserName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLogin;

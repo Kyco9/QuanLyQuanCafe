@@ -17,14 +17,14 @@ namespace QuanLyQuanCafe
         public fAdmin()
         {
             InitializeComponent();
-            LoadAccountList();
+            //LoadAccountList();
         }
 
-        void LoadAccountList()
-        {
-            string query = "USP_GetAccountByUserName @userName";
+        //void LoadAccountList()
+        //{
+        //    string query = "USP_GetAccountByUserName @userName";
             
-            dtgvAccount.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] { "staff"});
-        }
+        //    dtgvAccount.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] { "staff"});
+        //}
     }
 }
