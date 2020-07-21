@@ -85,7 +85,7 @@
             // thôngTinCaNhânToolStripMenuItem
             // 
             this.thôngTinCaNhânToolStripMenuItem.Name = "thôngTinCaNhânToolStripMenuItem";
-            this.thôngTinCaNhânToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.thôngTinCaNhânToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.thôngTinCaNhânToolStripMenuItem.Text = "Thông tin cá nhân";
             this.thôngTinCaNhânToolStripMenuItem.Click += new System.EventHandler(this.thôngTinCaNhânToolStripMenuItem_Click);
             // 
@@ -232,6 +232,7 @@
             // 
             // flpTable
             // 
+            this.flpTable.AutoScroll = true;
             this.flpTable.Location = new System.Drawing.Point(12, 27);
             this.flpTable.Name = "flpTable";
             this.flpTable.Size = new System.Drawing.Size(619, 594);
