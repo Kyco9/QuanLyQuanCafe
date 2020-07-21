@@ -116,7 +116,6 @@ GO
 
 --Insert thông tin bảng TableFood bằng vong lặp
 DECLARE @i INT = 1
-
 WHILE @i <= 40
 BEGIN
 	INSERT dbo.TableFood ( name)VALUES  ( N'Bàn ' + CAST(@i AS nvarchar(100)))
@@ -127,3 +126,26 @@ GO
 CREATE PROC USP_GetTableList
 AS SELECT * FROM TableFood
 GO
+
+
+--Insert thông tin bảng TableFood bằng vong lặp
+DECLARE @i INT = 1
+WHILE @i <= 40
+BEGIN
+	INSERT dbo.TableFood ( name)VALUES  ( N'Bàn ' + CAST(@i AS nvarchar(100)))
+	SET @i = @i + 1
+END
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+
