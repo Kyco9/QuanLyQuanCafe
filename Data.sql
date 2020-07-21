@@ -127,24 +127,140 @@ CREATE PROC USP_GetTableList
 AS SELECT * FROM TableFood
 GO
 
+-- thêm category
+INSERT dbo.FoodCategory
+        ( name )
+VALUES  ( N'Hải sản'  -- name - nvarchar(100)
+          )
+INSERT dbo.FoodCategory
+        ( name )
+VALUES  ( N'Nông sản' )
+INSERT dbo.FoodCategory
+        ( name )
+VALUES  ( N'Lâm sản' )
+INSERT dbo.FoodCategory
+        ( name )
+VALUES  ( N'Sản sản' )
+INSERT dbo.FoodCategory
+        ( name )
+VALUES  ( N'Nước' )
 
---Insert thông tin bảng TableFood bằng vong lặp
-DECLARE @i INT = 1
-WHILE @i <= 40
-BEGIN
-	INSERT dbo.TableFood ( name)VALUES  ( N'Bàn ' + CAST(@i AS nvarchar(100)))
-	SET @i = @i + 1
-END
+-- thêm món ăn
+INSERT dbo.Food
+        ( name, idCategory, price )
+VALUES  ( N'Mực một nắng nước sa tế', -- name - nvarchar(100)
+          1, -- idCategory - int
+          120000)
+INSERT dbo.Food
+        ( name, idCategory, price )
+VALUES  ( N'Nghêu hấp xả', 1, 50000)
+INSERT dbo.Food
+        ( name, idCategory, price )
+VALUES  ( N'Dú dê nướng sữa', 2, 60000)
+INSERT dbo.Food
+        ( name, idCategory, price )
+VALUES  ( N'Heo rừng nướng muối ớt', 3, 75000)
+INSERT dbo.Food
+        ( name, idCategory, price )
+VALUES  ( N'Cơm chiên mushi', 4, 999999)
+INSERT dbo.Food
+        ( name, idCategory, price )
+VALUES  ( N'7Up', 5, 15000)
+INSERT dbo.Food
+        ( name, idCategory, price )
+VALUES  ( N'Cafe', 5, 12000)
+
+-- thêm bill
+INSERT	dbo.Bill
+        ( DateCheckIn ,
+          DateCheckOut ,
+          idTable ,
+          status
+        )
+VALUES  ( GETDATE() , -- DateCheckIn - date
+          NULL , -- DateCheckOut - date
+          3 , -- idTable - int
+          0  -- status - int
+        )
+        
+INSERT	dbo.Bill
+        ( DateCheckIn ,
+          DateCheckOut ,
+          idTable ,
+          status
+        )
+VALUES  ( GETDATE() , -- DateCheckIn - date
+          NULL , -- DateCheckOut - date
+          4, -- idTable - int
+          0  -- status - int
+        )
+INSERT	dbo.Bill
+        ( DateCheckIn ,
+          DateCheckOut ,
+          idTable ,
+          status
+        )
+VALUES  ( GETDATE() , -- DateCheckIn - date
+          GETDATE() , -- DateCheckOut - date
+          5 , -- idTable - int
+          1  -- status - int
+        )
+
+-- thêm bill info
+INSERT	dbo.BillInfo
+        ( idBill, idFood, count )
+VALUES  ( 1, -- idBill - int
+          1, -- idFood - int
+          2  -- count - int
+          )
+INSERT	dbo.BillInfo
+        ( idBill, idFood, count )
+VALUES  ( 1, -- idBill - int
+          3, -- idFood - int
+          4  -- count - int
+          )
+INSERT	dbo.BillInfo
+        ( idBill, idFood, count )
+VALUES  ( 1, -- idBill - int
+          5, -- idFood - int
+          1  -- count - int
+          )
+INSERT	dbo.BillInfo
+        ( idBill, idFood, count )
+VALUES  ( 2, -- idBill - int
+          1, -- idFood - int
+          2  -- count - int
+          )
+INSERT	dbo.BillInfo
+        ( idBill, idFood, count )
+VALUES  ( 2, -- idBill - int
+          6, -- idFood - int
+          2  -- count - int
+          )
+INSERT	dbo.BillInfo
+        ( idBill, idFood, count )
+VALUES  ( 3, -- idBill - int
+          5, -- idFood - int
+          2  -- count - int
+          )         
+          
 GO
 
 
+select * from Food
+select * from FoodCategory
+select * from Bill
+select * from BillInfo
+select * from TableFood
+select * from Account
 
 
+select * from Bill --where idTable = 3 and status = 0
 
 
-
-
-
+select f.name, bi.count, f.price, f.price*bi.count as totalPrice 
+from BillInfo as bi, Bill as b, Food as f 
+where bi.idBill = b.id and bi.idFood = f.id and b.status = 0 and b.idTable = 5
 
 
 

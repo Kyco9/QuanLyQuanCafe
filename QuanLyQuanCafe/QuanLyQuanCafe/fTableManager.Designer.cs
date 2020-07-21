@@ -51,6 +51,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txbTotalPrice = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -126,6 +127,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.txbTotalPrice);
             this.panel3.Controls.Add(this.cbSwitchTable);
             this.panel3.Controls.Add(this.btnSwitchTable);
             this.panel3.Controls.Add(this.nmDiscount);
@@ -158,7 +160,7 @@
             // nmDiscount
             // 
             this.nmDiscount.Font = new System.Drawing.Font("Arial", 11F);
-            this.nmDiscount.Location = new System.Drawing.Point(187, 34);
+            this.nmDiscount.Location = new System.Drawing.Point(129, 34);
             this.nmDiscount.Name = "nmDiscount";
             this.nmDiscount.Size = new System.Drawing.Size(120, 24);
             this.nmDiscount.TabIndex = 5;
@@ -167,7 +169,7 @@
             // btnDiscount
             // 
             this.btnDiscount.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnDiscount.Location = new System.Drawing.Point(187, 3);
+            this.btnDiscount.Location = new System.Drawing.Point(129, 3);
             this.btnDiscount.Name = "btnDiscount";
             this.btnDiscount.Size = new System.Drawing.Size(120, 26);
             this.btnDiscount.TabIndex = 4;
@@ -252,7 +254,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Tên món";
-            this.columnHeader1.Width = 138;
+            this.columnHeader1.Width = 202;
             // 
             // columnHeader2
             // 
@@ -262,12 +264,25 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Đơn giá";
-            this.columnHeader3.Width = 151;
+            this.columnHeader3.Width = 107;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Thành tiền";
-            this.columnHeader4.Width = 137;
+            this.columnHeader4.Width = 116;
+            // 
+            // txbTotalPrice
+            // 
+            this.txbTotalPrice.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txbTotalPrice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbTotalPrice.ForeColor = System.Drawing.Color.OliveDrab;
+            this.txbTotalPrice.Location = new System.Drawing.Point(255, 20);
+            this.txbTotalPrice.Name = "txbTotalPrice";
+            this.txbTotalPrice.ReadOnly = true;
+            this.txbTotalPrice.Size = new System.Drawing.Size(103, 26);
+            this.txbTotalPrice.TabIndex = 8;
+            this.txbTotalPrice.Text = "0";
+            this.txbTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // fTableManager
             // 
@@ -287,6 +302,7 @@
             this.menuStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmDiscount)).EndInit();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nmFoodCount)).EndInit();
@@ -320,5 +336,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.TextBox txbTotalPrice;
     }
 }
