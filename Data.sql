@@ -246,6 +246,39 @@ VALUES  ( 3, -- idBill - int
           
 GO
 
+CREATE PROC USP_InsertBill
+@idTable INT
+AS
+BEGIN
+	INSERT	dbo.Bill
+        ( DateCheckIn ,
+          DateCheckOut ,
+          idTable ,
+          status
+        )
+VALUES  ( GETDATE() , -- DateCheckIn - date
+          NULL , -- DateCheckOut - date
+          @idTable, -- idTable - int
+          0  -- status - int
+        )
+END
+GO
+
+CREATE PROC USP_InsertBillInfo
+@idBill INT, @idFood INT, @count INT
+AS
+BEGIN
+	INSERT	dbo.BillInfo
+        ( idBill, idFood, count )
+VALUES  ( @idBill, -- idBill - int
+          @idFood, -- idFood - int
+          @count  -- count - int
+          )   
+END
+GO
+
+
+
 
 select * from Food
 select * from FoodCategory
@@ -254,13 +287,6 @@ select * from BillInfo
 select * from TableFood
 select * from Account
 
-
-select * from Bill --where idTable = 3 and status = 0
-
-
-select f.name, bi.count, f.price, f.price*bi.count as totalPrice 
-from BillInfo as bi, Bill as b, Food as f 
-where bi.idBill = b.id and bi.idFood = f.id and b.status = 0 and b.idTable = 5
 
 
 

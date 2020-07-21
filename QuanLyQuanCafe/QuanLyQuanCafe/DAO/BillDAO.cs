@@ -38,5 +38,10 @@ namespace QuanLyQuanCafe.DAO
             }
             return -1;
         }
+
+        public void InsertBill(int id)
+        {
+            DataProvider.Instance.ExecuteQuery("exec USP_InsertBill @idTable", new object[] {id});
+        }
     }
 }
