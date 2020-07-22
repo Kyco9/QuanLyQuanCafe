@@ -268,17 +268,37 @@ CREATE PROC USP_InsertBillInfo
 @idBill INT, @idFood INT, @count INT
 AS
 BEGIN
-	INSERT	dbo.BillInfo
+
+	DECLARE @isExitsBillInfo INT
+	DECLARE @foodCount INT = 1
+	
+	SELECT @isExitsBillInfo = id, @foodCount = b.count 
+	FROM dbo.BillInfo AS b 
+	WHERE idBill = @idBill AND idFood = @idFood
+
+	IF (@isExitsBillInfo > 0)
+	BEGIN
+		DECLARE @newCount INT = @foodCount + @count
+		IF (@newCount > 0)
+			UPDATE dbo.BillInfo	SET count = @foodCount + @count WHERE idFood = @idFood
+		ELSE
+			DELETE dbo.BillInfo WHERE idBill = @idBill AND idFood = @idFood
+	END
+	ELSE
+	BEGIN
+		INSERT	dbo.BillInfo
         ( idBill, idFood, count )
-VALUES  ( @idBill, -- idBill - int
+		VALUES  ( @idBill, -- idBill - int
           @idFood, -- idFood - int
           @count  -- count - int
-          )   
+          )
+	END
 END
 GO
 
 
 
+select MAX(id) from Bill
 
 select * from Food
 select * from FoodCategory
