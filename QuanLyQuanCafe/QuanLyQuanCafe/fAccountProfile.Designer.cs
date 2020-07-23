@@ -105,9 +105,9 @@
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 19);
+            this.label2.Size = new System.Drawing.Size(112, 19);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Tên đăng nhập: ";
+            this.label2.Text = "Tên tài khoản";
             // 
             // panel3
             // 
@@ -205,6 +205,7 @@
             this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "Cập nhật";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnExit
             // 
