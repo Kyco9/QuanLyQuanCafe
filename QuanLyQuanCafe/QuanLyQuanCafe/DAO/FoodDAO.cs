@@ -54,6 +54,23 @@ namespace QuanLyQuanCafe.DAO
             return list;
         }
 
+        public List<Food> SearchFoodByName(string name)
+        {
+            List<Food> list = new List<Food>();
+
+            string query = string.Format("SELECT * FROM dbo.Food WHERE dbo.fuConvertToUnsign1(name) LIKE N'%' + dbo.fuConvertToUnsign1(N'{0}') + '%'", name);
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow item in data.Rows)
+            {
+                Food food = new Food(item);
+                list.Add(food);
+            }
+
+            return list;
+        }
+
         public bool InsertFood(string name, int id, float price)
         {
             string query = string.Format("INSERT dbo.Food ( name, idCategory, price )VALUES  ( N'{0}', {1}, {2})", name, id, price);
@@ -79,5 +96,7 @@ namespace QuanLyQuanCafe.DAO
 
             return result > 0;
         }
+
+
     }
 }

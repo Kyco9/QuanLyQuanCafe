@@ -270,6 +270,7 @@
             this.btnSearchFood.TabIndex = 7;
             this.btnSearchFood.Text = "Tìm";
             this.btnSearchFood.UseVisualStyleBackColor = true;
+            this.btnSearchFood.Click += new System.EventHandler(this.btnSearchFood_Click);
             // 
             // panel5
             // 
@@ -457,7 +458,7 @@
             // 
             // dtgvFood
             // 
-            this.dtgvFood.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvFood.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dtgvFood.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvFood.Location = new System.Drawing.Point(4, 3);
             this.dtgvFood.Name = "dtgvFood";
