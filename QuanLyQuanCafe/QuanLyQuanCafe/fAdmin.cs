@@ -17,14 +17,34 @@ namespace QuanLyQuanCafe
         public fAdmin()
         {
             InitializeComponent();
-            //LoadAccountList();
+            LoadDateTimePickerBill();
+            LoadListBillByDate(dtpkFromDate.Value, dtpkToDate.Value);
+        }
+        #region Methods
+
+        void LoadListBillByDate(DateTime checkIn, DateTime checkOut)
+        {
+            dtgvBill.DataSource = BillDAO.Instance.GetBillListByDate(checkIn, checkOut);
         }
 
-        //void LoadAccountList()
-        //{
-        //    string query = "USP_GetAccountByUserName @userName";
-            
-        //    dtgvAccount.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] { "staff"});
-        //}
+        void LoadDateTimePickerBill()
+        {
+            DateTime today = DateTime.Now;
+            dtpkFromDate.Value = new DateTime(today.Year, today.Month, 1);
+            dtpkToDate.Value = dtpkFromDate.Value.AddMonths(1).AddDays(-1);
+        }
+
+        #endregion
+
+        #region events
+
+        private void btnViewBill_Click(object sender, EventArgs e)
+        {
+            LoadListBillByDate(dtpkFromDate.Value, dtpkToDate.Value);
+        }
+
+
+        #endregion
+
     }
 }

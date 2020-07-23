@@ -642,3 +642,56 @@ AS BEGIN
 		UPDATE TableFood SET status = N'Trống' WHERE id = @idTable1
 END
 GO
+
+
+
+
+
+
+
+
+ALTER TABLE dbo.Bill ADD totalPrice FLOAT
+
+DELETE dbo.BillInfo
+DELETE dbo.Bill
+
+GO
+
+CREATE PROC USP_GetListBillByDate
+@checkIn date, @checkOut date
+AS 
+BEGIN
+	SELECT t.name AS [Tên bàn], b.totalPrice AS [Tổng tiền], DateCheckIn AS [Ngày vào], DateCheckOut AS [Ngày ra], discount AS [Giảm giá]
+	FROM dbo.Bill AS b,dbo.TableFood AS t
+	WHERE DateCheckIn >= @checkIn AND DateCheckOut <= @checkOut AND b.status = 1
+	AND t.id = b.idTable
+END
+GO
+
+CREATE PROC USP_UpdateAccount
+@userName NVARCHAR(100), @displayName NVARCHAR(100), @password NVARCHAR(100), @newPassword NVARCHAR(100)
+AS
+BEGIN
+	DECLARE @isRightPass INT = 0
+	
+	SELECT @isRightPass = COUNT(*) FROM dbo.Account WHERE USERName = @userName AND PassWord = @password
+	
+	IF (@isRightPass = 1)
+	BEGIN
+		IF (@newPassword = NULL OR @newPassword = '')
+		BEGIN
+			UPDATE dbo.Account SET DisplayName = @displayName WHERE UserName = @userName
+		END		
+		ELSE
+			UPDATE dbo.Account SET DisplayName = @displayName, PassWord = @newPassword WHERE UserName = @userName
+	end
+END
+GO
+
+
+
+
+
+
+
+
