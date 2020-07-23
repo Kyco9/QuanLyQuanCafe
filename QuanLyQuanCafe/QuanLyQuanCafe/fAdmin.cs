@@ -16,6 +16,9 @@ namespace QuanLyQuanCafe
     public partial class fAdmin : Form
     {
         BindingSource foodList = new BindingSource();
+        BindingSource accountList = new BindingSource();
+
+        public Account loginAccount;
 
         public fAdmin()
         {
@@ -28,13 +31,28 @@ namespace QuanLyQuanCafe
         void Loadd()
         {
             dtgvFood.DataSource = foodList;
+            dtgvAccount.DataSource = accountList;
 
             LoadDateTimePickerBill();
             LoadListBillByDate(dtpkFromDate.Value, dtpkToDate.Value);
             LoadListFood();
+            LoadAccount();
 
             LoadCategoryIntoCombobox(cbFoodCategory);
             AddFoodBinding();
+            AddAccountBinding();
+        }
+
+        void AddAccountBinding()
+        {
+            txbUserName.DataBindings.Add(new Binding("Text", dtgvAccount.DataSource, "UserName", true, DataSourceUpdateMode.Never));
+            txbDisplayName.DataBindings.Add(new Binding("Text", dtgvAccount.DataSource, "DisplayName", true, DataSourceUpdateMode.Never));
+            numericUpDown1.DataBindings.Add(new Binding("Text", dtgvAccount.DataSource, "Type", true, DataSourceUpdateMode.Never));
+        }
+
+        void LoadAccount()
+        {
+            accountList.DataSource = AccountDAO.Instance.GetListAccount();
         }
 
         void LoadListBillByDate(DateTime checkIn, DateTime checkOut)
@@ -74,11 +92,79 @@ namespace QuanLyQuanCafe
             return listFood;
         }
 
+        void AddAccount(string userName, string displayName, int type)
+        {
+            if (AccountDAO.Instance.InsertAccount(userName, displayName, type))
+            {
+                MessageBox.Show("Thêm tài khoản thành công");
+            }
+            else
+            {
+                MessageBox.Show("Thêm tài khoản thất bại");
+            }
 
+            LoadAccount();
+        }
+
+        void EditAccount(string userName, string displayName, int type)
+        {
+            if (AccountDAO.Instance.UpdateAccount(userName, displayName, type))
+            {
+                MessageBox.Show("Cập nhật tài khoản thành công");
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật tài khoản thất bại");
+            }
+
+            LoadAccount();
+        }
+
+        void DeleteAccount(string userName)
+        {
+            if (loginAccount.UserName.Equals(userName))
+            {
+                MessageBox.Show("Vui lòng đừng xóa chính bạn chứ");
+                return;
+            }
+            if (AccountDAO.Instance.DeleteAccount(userName))
+            {
+                MessageBox.Show("Xóa tài khoản thành công");
+            }
+            else
+            {
+                MessageBox.Show("Xóa tài khoản thất bại");
+            }
+
+            LoadAccount();
+        }
+
+        void ResetPass(string userName)
+        {
+            if (AccountDAO.Instance.ResetPassword(userName))
+            {
+                MessageBox.Show("Đặt lại mật khẩu thành công");
+            }
+            else
+            {
+                MessageBox.Show("Đặt lại mật khẩu thất bại");
+            }
+        }
 
         #endregion
 
         #region events
+
+        private void btnSearchFood_Click(object sender, EventArgs e)
+        {
+            foodList.DataSource = SearchFoodByName(txbSearchFoodName.Text);
+        }
+
+
+        private void btnShowAccount_Click(object sender, EventArgs e)
+        {
+            LoadAccount();
+        }
 
         private void btnViewBill_Click(object sender, EventArgs e)
         {
@@ -199,9 +285,36 @@ namespace QuanLyQuanCafe
         }
 
 
-        private void btnSearchFood_Click(object sender, EventArgs e)
+        private void btnAddAccount_Click(object sender, EventArgs e)
         {
-            foodList.DataSource =  SearchFoodByName(txbSearchFoodName.Text);
+            string userName = txbUserName.Text;
+            string displayName = txbDisplayName.Text;
+            int type = (int)numericUpDown1.Value;
+
+            AddAccount(userName, displayName, type);
+        }
+
+        private void btnDeleteAccount_Click(object sender, EventArgs e)
+        {
+            string userName = txbUserName.Text;
+
+            DeleteAccount(userName);
+        }
+
+        private void btnEditAccount_Click(object sender, EventArgs e)
+        {
+            string userName = txbUserName.Text;
+            string displayName = txbDisplayName.Text;
+            int type = (int)numericUpDown1.Value;
+
+            EditAccount(userName, displayName, type);
+        }
+
+        private void btnResetPasswod_Click(object sender, EventArgs e)
+        {
+            string userName = txbUserName.Text;
+
+            ResetPass(userName);
         }
 
         #endregion

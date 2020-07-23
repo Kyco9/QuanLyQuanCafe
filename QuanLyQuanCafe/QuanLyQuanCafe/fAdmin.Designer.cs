@@ -102,7 +102,6 @@
             this.panel24 = new System.Windows.Forms.Panel();
             this.btnResetPasswod = new System.Windows.Forms.Button();
             this.panel26 = new System.Windows.Forms.Panel();
-            this.cbAccountType = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.panel27 = new System.Windows.Forms.Panel();
             this.txbDisplayName = new System.Windows.Forms.TextBox();
@@ -112,6 +111,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.panel29 = new System.Windows.Forms.Panel();
             this.dtgvAccount = new System.Windows.Forms.DataGridView();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.tcAdmin.SuspendLayout();
             this.tpBill.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -151,6 +151,7 @@
             this.panel28.SuspendLayout();
             this.panel29.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvAccount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // tcAdmin
@@ -599,6 +600,7 @@
             // 
             // dtgvCategory
             // 
+            this.dtgvCategory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dtgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvCategory.Location = new System.Drawing.Point(4, 3);
             this.dtgvCategory.Name = "dtgvCategory";
@@ -767,6 +769,7 @@
             // 
             // dtgvTable
             // 
+            this.dtgvTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dtgvTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvTable.Location = new System.Drawing.Point(4, 3);
             this.dtgvTable.Name = "dtgvTable";
@@ -805,6 +808,7 @@
             this.btnShowAccount.TabIndex = 6;
             this.btnShowAccount.Text = "Xem";
             this.btnShowAccount.UseVisualStyleBackColor = true;
+            this.btnShowAccount.Click += new System.EventHandler(this.btnShowAccount_Click);
             // 
             // btnEditAccount
             // 
@@ -814,6 +818,7 @@
             this.btnEditAccount.TabIndex = 5;
             this.btnEditAccount.Text = "Sửa";
             this.btnEditAccount.UseVisualStyleBackColor = true;
+            this.btnEditAccount.Click += new System.EventHandler(this.btnEditAccount_Click);
             // 
             // btnDeleteAccount
             // 
@@ -823,6 +828,7 @@
             this.btnDeleteAccount.TabIndex = 4;
             this.btnDeleteAccount.Text = "Xóa";
             this.btnDeleteAccount.UseVisualStyleBackColor = true;
+            this.btnDeleteAccount.Click += new System.EventHandler(this.btnDeleteAccount_Click);
             // 
             // btnAddAccount
             // 
@@ -832,6 +838,7 @@
             this.btnAddAccount.TabIndex = 3;
             this.btnAddAccount.Text = "Thêm";
             this.btnAddAccount.UseVisualStyleBackColor = true;
+            this.btnAddAccount.Click += new System.EventHandler(this.btnAddAccount_Click);
             // 
             // panel24
             // 
@@ -853,23 +860,16 @@
             this.btnResetPasswod.TabIndex = 7;
             this.btnResetPasswod.Text = "Đặt lại mật khẩu";
             this.btnResetPasswod.UseVisualStyleBackColor = true;
+            this.btnResetPasswod.Click += new System.EventHandler(this.btnResetPasswod_Click);
             // 
             // panel26
             // 
-            this.panel26.Controls.Add(this.cbAccountType);
+            this.panel26.Controls.Add(this.numericUpDown1);
             this.panel26.Controls.Add(this.label11);
             this.panel26.Location = new System.Drawing.Point(3, 127);
             this.panel26.Name = "panel26";
             this.panel26.Size = new System.Drawing.Size(371, 46);
             this.panel26.TabIndex = 3;
-            // 
-            // cbAccountType
-            // 
-            this.cbAccountType.FormattingEnabled = true;
-            this.cbAccountType.Location = new System.Drawing.Point(154, 10);
-            this.cbAccountType.Name = "cbAccountType";
-            this.cbAccountType.Size = new System.Drawing.Size(210, 26);
-            this.cbAccountType.TabIndex = 1;
             // 
             // label11
             // 
@@ -922,7 +922,6 @@
             this.txbUserName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbUserName.Location = new System.Drawing.Point(154, 10);
             this.txbUserName.Name = "txbUserName";
-            this.txbUserName.ReadOnly = true;
             this.txbUserName.Size = new System.Drawing.Size(210, 26);
             this.txbUserName.TabIndex = 1;
             // 
@@ -946,11 +945,24 @@
             // 
             // dtgvAccount
             // 
+            this.dtgvAccount.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dtgvAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvAccount.Location = new System.Drawing.Point(4, 3);
             this.dtgvAccount.Name = "dtgvAccount";
             this.dtgvAccount.Size = new System.Drawing.Size(495, 510);
             this.dtgvAccount.TabIndex = 0;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(154, 12);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(40, 26);
+            this.numericUpDown1.TabIndex = 1;
             // 
             // fAdmin
             // 
@@ -1013,6 +1025,7 @@
             this.panel28.PerformLayout();
             this.panel29.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvAccount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1092,7 +1105,6 @@
         private System.Windows.Forms.Button btnAddAccount;
         private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.Panel panel26;
-        private System.Windows.Forms.ComboBox cbAccountType;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel27;
         private System.Windows.Forms.TextBox txbDisplayName;
@@ -1103,5 +1115,6 @@
         private System.Windows.Forms.Panel panel29;
         private System.Windows.Forms.DataGridView dtgvAccount;
         private System.Windows.Forms.Button btnResetPasswod;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }
