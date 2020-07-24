@@ -44,7 +44,6 @@
             this.cbSwitchTable = new System.Windows.Forms.ComboBox();
             this.btnSwitchTable = new System.Windows.Forms.Button();
             this.nmDiscount = new System.Windows.Forms.NumericUpDown();
-            this.btnDiscount = new System.Windows.Forms.Button();
             this.btnCheckOut = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.nmFoodCount = new System.Windows.Forms.NumericUpDown();
@@ -52,6 +51,12 @@
             this.cbFood = new System.Windows.Forms.ComboBox();
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.phimTătToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thêmMonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thanhToanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -64,7 +69,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.adminToolStripMenuItem,
-            this.thôngTinTaiKhoanToolStripMenuItem});
+            this.thôngTinTaiKhoanToolStripMenuItem,
+            this.phimTătToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1153, 24);
@@ -148,11 +154,13 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.txbTotalPrice);
             this.panel3.Controls.Add(this.cbSwitchTable);
             this.panel3.Controls.Add(this.btnSwitchTable);
             this.panel3.Controls.Add(this.nmDiscount);
-            this.panel3.Controls.Add(this.btnDiscount);
             this.panel3.Controls.Add(this.btnCheckOut);
             this.panel3.Location = new System.Drawing.Point(638, 558);
             this.panel3.Name = "panel3";
@@ -164,10 +172,10 @@
             this.txbTotalPrice.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txbTotalPrice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbTotalPrice.ForeColor = System.Drawing.Color.OliveDrab;
-            this.txbTotalPrice.Location = new System.Drawing.Point(255, 20);
+            this.txbTotalPrice.Location = new System.Drawing.Point(238, 32);
             this.txbTotalPrice.Name = "txbTotalPrice";
             this.txbTotalPrice.ReadOnly = true;
-            this.txbTotalPrice.Size = new System.Drawing.Size(103, 26);
+            this.txbTotalPrice.Size = new System.Drawing.Size(120, 26);
             this.txbTotalPrice.TabIndex = 8;
             this.txbTotalPrice.Text = "0";
             this.txbTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -195,21 +203,11 @@
             // nmDiscount
             // 
             this.nmDiscount.Font = new System.Drawing.Font("Arial", 11F);
-            this.nmDiscount.Location = new System.Drawing.Point(129, 34);
+            this.nmDiscount.Location = new System.Drawing.Point(238, 3);
             this.nmDiscount.Name = "nmDiscount";
-            this.nmDiscount.Size = new System.Drawing.Size(120, 24);
+            this.nmDiscount.Size = new System.Drawing.Size(94, 24);
             this.nmDiscount.TabIndex = 5;
             this.nmDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnDiscount
-            // 
-            this.btnDiscount.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnDiscount.Location = new System.Drawing.Point(129, 3);
-            this.btnDiscount.Name = "btnDiscount";
-            this.btnDiscount.Size = new System.Drawing.Size(120, 26);
-            this.btnDiscount.TabIndex = 4;
-            this.btnDiscount.Text = "Giảm giá";
-            this.btnDiscount.UseVisualStyleBackColor = true;
             // 
             // btnCheckOut
             // 
@@ -289,6 +287,61 @@
             this.flpTable.Size = new System.Drawing.Size(619, 594);
             this.flpTable.TabIndex = 5;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(143, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 19);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Giảm giá: ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(143, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(91, 19);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Tổng tiền: ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(333, 5);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(25, 19);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "%";
+            // 
+            // phimTătToolStripMenuItem
+            // 
+            this.phimTătToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thêmMonToolStripMenuItem,
+            this.thanhToanToolStripMenuItem});
+            this.phimTătToolStripMenuItem.Name = "phimTătToolStripMenuItem";
+            this.phimTătToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.phimTătToolStripMenuItem.Text = "Phím tắt";
+            // 
+            // thêmMonToolStripMenuItem
+            // 
+            this.thêmMonToolStripMenuItem.Name = "thêmMonToolStripMenuItem";
+            this.thêmMonToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.thêmMonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.thêmMonToolStripMenuItem.Text = "Thêm món";
+            this.thêmMonToolStripMenuItem.Click += new System.EventHandler(this.thêmMonToolStripMenuItem_Click);
+            // 
+            // thanhToanToolStripMenuItem
+            // 
+            this.thanhToanToolStripMenuItem.Name = "thanhToanToolStripMenuItem";
+            this.thanhToanToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.thanhToanToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.thanhToanToolStripMenuItem.Text = "Thanh toán";
+            this.thanhToanToolStripMenuItem.Click += new System.EventHandler(this.thanhToanToolStripMenuItem_Click);
+            // 
             // fTableManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -334,7 +387,6 @@
         private System.Windows.Forms.Button btnCheckOut;
         private System.Windows.Forms.FlowLayoutPanel flpTable;
         private System.Windows.Forms.NumericUpDown nmDiscount;
-        private System.Windows.Forms.Button btnDiscount;
         private System.Windows.Forms.ComboBox cbSwitchTable;
         private System.Windows.Forms.Button btnSwitchTable;
         private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -342,5 +394,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.TextBox txbTotalPrice;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem phimTătToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thêmMonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thanhToanToolStripMenuItem;
     }
 }
