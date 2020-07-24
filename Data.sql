@@ -1,7 +1,7 @@
-﻿CREATE DATABASE QuanLyQuanCafe431
+﻿CREATE DATABASE QuanLyQuanCafe
 GO
 
-USE QuanLyQuanCafe431
+USE QuanLyQuanCafe
 GO
 
 --Các bảng cần có
@@ -79,7 +79,7 @@ INSERT INTO Account
           Type
         )
 VALUES  ( N'admin' , -- UserName - nvarchar(100)
-          N'Quan Tri Vien' , -- DisplayName - nvarchar(100)
+          N'Quản lý' , -- DisplayName - nvarchar(100)
           N'1' , -- PassWord - nvarchar(1000)
           1  -- Type - int
         )
@@ -90,7 +90,7 @@ INSERT INTO Account
           Type
         )
 VALUES  ( N'staff' , -- UserName - nvarchar(100)
-          N'Nhan Vien' , -- DisplayName - nvarchar(100)
+          N'Nhân viên' , -- DisplayName - nvarchar(100)
           N'1' , -- PassWord - nvarchar(1000)
           0  -- Type - int
         )
@@ -128,46 +128,72 @@ GO
 -- thêm category
 INSERT FoodCategory
         ( name )
-VALUES  ( N'Hải sản'  -- name - nvarchar(100)
+VALUES  ( N'Cafe'  -- name - nvarchar(100)
           )
 INSERT FoodCategory
         ( name )
-VALUES  ( N'Nông sản' )
+VALUES  ( N'Trà sữa' )
 INSERT FoodCategory
         ( name )
-VALUES  ( N'Lâm sản' )
+VALUES  ( N'Chè' )
 INSERT FoodCategory
         ( name )
-VALUES  ( N'Sản sản' )
+VALUES  ( N'Nước ngọt' )
 INSERT FoodCategory
         ( name )
-VALUES  ( N'Nước' )
+VALUES  ( N'Ăn vặt' )
 GO
 
 -- thêm món ăn
 INSERT Food
         ( name, idCategory, price )
-VALUES  ( N'Mực một nắng nước sa tế', -- name - nvarchar(100)
-          1, -- idCategory - int
-          120000)
+VALUES  ( N'Cafe đen', 1, 20000)
 INSERT Food
         ( name, idCategory, price )
-VALUES  ( N'Nghêu hấp xả', 1, 50000)
+VALUES  ( N'Cafe sữa', 1, 25000)
 INSERT Food
         ( name, idCategory, price )
-VALUES  ( N'Dú dê nướng sữa', 2, 60000)
+VALUES  ( N'Bạc xỉu', 1, 25000)
 INSERT Food
         ( name, idCategory, price )
-VALUES  ( N'Heo rừng nướng muối ớt', 3, 75000)
+VALUES  ( N'Espresso', 1, 35000)
+
 INSERT Food
         ( name, idCategory, price )
-VALUES  ( N'Cơm chiên mushi', 4, 999999)
+VALUES  ( N'Trà sữa truyền thống', 2, 30000)
 INSERT Food
         ( name, idCategory, price )
-VALUES  ( N'7Up', 5, 15000)
+VALUES  ( N'Trà sữa hiện đại', 2, 30000)
+
 INSERT Food
         ( name, idCategory, price )
-VALUES  ( N'Cafe', 5, 12000)
+VALUES  ( N'Chè bưởi', 3, 25000)
+INSERT Food
+        ( name, idCategory, price )
+VALUES  ( N'Chè long nhãn', 3, 35000)
+INSERT Food
+        ( name, idCategory, price )
+VALUES  ( N'Chè thái đặc biệt', 3, 75000)
+
+INSERT Food
+        ( name, idCategory, price )
+VALUES  ( N'Seven Up', 4, 15000)
+INSERT Food
+        ( name, idCategory, price )
+VALUES  ( N'Coca Cola', 4, 15000)
+INSERT Food
+        ( name, idCategory, price )
+VALUES  ( N'Sting thái', 4, 20000)
+
+INSERT Food
+        ( name, idCategory, price )
+VALUES  ( N'Bánh tráng trộn', 5, 20000)
+INSERT Food
+        ( name, idCategory, price )
+VALUES  ( N'Bánh flan', 5, 25000)
+INSERT Food
+        ( name, idCategory, price )
+VALUES  ( N'Bánh snack cua đặc biệt', 5, 45000)
 GO
 
 -- thêm bill
