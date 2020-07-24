@@ -114,7 +114,7 @@ GO
 
 --Thêm TableFood bằng vong lặp
 DECLARE @i INT = 1
-WHILE @i <= 40
+WHILE @i <= 20
 BEGIN
 	INSERT TableFood ( name)VALUES  ( N'Bàn ' + CAST(@i AS nvarchar(100)))
 	SET @i = @i + 1
