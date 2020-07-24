@@ -1,7 +1,7 @@
-﻿CREATE DATABASE QuanLyQuanCafe
+﻿CREATE DATABASE QuanLyQuanCafe431
 GO
 
-USE QuanLyQuanCafe
+USE QuanLyQuanCafe431
 GO
 
 --Các bảng cần có
@@ -71,6 +71,7 @@ CREATE TABLE BillInfo
 )
 GO
 
+--thêm account
 INSERT INTO Account
         ( UserName ,
           DisplayName ,
@@ -103,9 +104,6 @@ BEGIN
 END
 GO
 
-EXEC USP_GetAccountByUserName @userName = N'admin' -- nvarchar(100)
-
-
 CREATE PROC USP_Login
 @userName nvarchar(100), @passWord nvarchar(100)
 AS
@@ -114,7 +112,7 @@ BEGIN
 END
 GO
 
---Insert thông tin bảng TableFood bằng vong lặp
+--Thêm TableFood bằng vong lặp
 DECLARE @i INT = 1
 WHILE @i <= 40
 BEGIN
@@ -144,6 +142,7 @@ VALUES  ( N'Sản sản' )
 INSERT FoodCategory
         ( name )
 VALUES  ( N'Nước' )
+GO
 
 -- thêm món ăn
 INSERT Food
@@ -169,6 +168,7 @@ VALUES  ( N'7Up', 5, 15000)
 INSERT Food
         ( name, idCategory, price )
 VALUES  ( N'Cafe', 5, 12000)
+GO
 
 -- thêm bill
 INSERT	Bill
@@ -205,6 +205,7 @@ VALUES  ( GETDATE() , -- DateCheckIn - date
           5 , -- idTable - int
           1  -- status - int
         )
+GO
 
 -- thêm bill info
 INSERT	BillInfo
@@ -246,198 +247,12 @@ VALUES  ( 3, -- idBill - int
           
 GO
 
-
-/*
-CREATE PROC USP_InsertBill
-@idTable INT
-AS
-BEGIN
-	INSERT	Bill
-        ( DateCheckIn ,
-          DateCheckOut ,
-          idTable ,
-          status,
-		  discount
-        )
-VALUES  ( GETDATE() , -- DateCheckIn - date
-          NULL , -- DateCheckOut - date
-          @idTable, -- idTable - int
-          0,  -- status - int
-		  0
-        )
-END
-GO
-
-CREATE PROC USP_InsertBillInfo
-@idBill INT, @idFood INT, @count INT
-AS
-BEGIN
-
-	DECLARE @isExitsBillInfo INT
-	DECLARE @foodCount INT = 1
-	
-	SELECT @isExitsBillInfo = id, @foodCount = b.count 
-	FROM BillInfo AS b 
-	WHERE idBill = @idBill AND idFood = @idFood
-
-	IF (@isExitsBillInfo > 0)
-	BEGIN
-		DECLARE @newCount INT = @foodCount + @count
-		IF (@newCount > 0)
-			UPDATE BillInfo	SET count = @foodCount + @count WHERE idFood = @idFood
-		ELSE
-			DELETE BillInfo WHERE idBill = @idBill AND idFood = @idFood
-	END
-	ELSE
-	BEGIN
-		INSERT	BillInfo
-        ( idBill, idFood, count )
-		VALUES  ( @idBill, -- idBill - int
-          @idFood, -- idFood - int
-          @count  -- count - int
-          )
-	END
-END
-GO
-
-
-
-DELETE BillInfo
-
-DELETE Bill
-
-CREATE TRIGGER UTG_UpdateBillInfo
-ON BillInfo FOR INSERT, UPDATE
-AS
-BEGIN
-	DECLARE @idBill INT
-	
-	SELECT @idBill = idBill FROM Inserted
-	
-	DECLARE @idTable INT
-	
-	SELECT @idTable = idTable FROM Bill WHERE id = @idBill AND status = 0
-	
-	UPDATE TableFood SET status = N'Có người' WHERE id = @idTable
-END
-GO
-
-CREATE TRIGGER UTG_UpdateBill
-ON Bill FOR UPDATE
-AS
-BEGIN
-	DECLARE @idBill INT
-	
-	SELECT @idBill = id FROM Inserted	
-	
-	DECLARE @idTable INT
-	
-	SELECT @idTable = idTable FROM Bill WHERE id = @idBill
-	
-	DECLARE @count int = 0
-	
-	SELECT @count = COUNT(*) FROM Bill WHERE idTable = @idTable AND status = 0
-	
-	IF (@count = 0)
-		UPDATE TableFood SET status = N'Trống' WHERE id = @idTable
-END
-GO
-
-
-
 ALTER TABLE Bill
 ADD discount INT
+GO
 
 UPDATE Bill SET discount = 0
 GO
-
-
-CREATE PROC USP_SwitchTabel
-@idTable1 INT, @idTable2 int
-AS BEGIN
-
-	DECLARE @idFirstBill int
-	DECLARE @idSeconrdBill INT
-	
-	DECLARE @isFirstTablEmty INT = 1
-	DECLARE @isSecondTablEmty INT = 1
-	
-	
-	SELECT @idSeconrdBill = id FROM Bill WHERE idTable = @idTable2 AND status = 0
-	SELECT @idFirstBill = id FROM Bill WHERE idTable = @idTable1 AND status = 0
-	
-	PRINT @idFirstBill
-	PRINT @idSeconrdBill
-	PRINT '-----------'
-	
-	IF (@idFirstBill IS NULL)
-	BEGIN
-		PRINT '0000001'
-		INSERT Bill
-		        ( DateCheckIn ,
-		          DateCheckOut ,
-		          idTable ,
-		          status
-		        )
-		VALUES  ( GETDATE() , -- DateCheckIn - date
-		          NULL , -- DateCheckOut - date
-		          @idTable1 , -- idTable - int
-		          0  -- status - int
-		        )
-		        
-		SELECT @idFirstBill = MAX(id) FROM Bill WHERE idTable = @idTable1 AND status = 0
-		
-	END
-	
-	SELECT @isFirstTablEmty = COUNT(*) FROM BillInfo WHERE idBill = @idFirstBill
-	
-	PRINT @idFirstBill
-	PRINT @idSeconrdBill
-	PRINT '-----------'
-	
-	IF (@idSeconrdBill IS NULL)
-	BEGIN
-		PRINT '0000002'
-		INSERT Bill
-		        ( DateCheckIn ,
-		          DateCheckOut ,
-		          idTable ,
-		          status
-		        )
-		VALUES  ( GETDATE() , -- DateCheckIn - date
-		          NULL , -- DateCheckOut - date
-		          @idTable2 , -- idTable - int
-		          0  -- status - int
-		        )
-		SELECT @idSeconrdBill = MAX(id) FROM Bill WHERE idTable = @idTable2 AND status = 0
-		
-	END
-	
-	SELECT @isSecondTablEmty = COUNT(*) FROM BillInfo WHERE idBill = @idSeconrdBill
-	
-	PRINT @idFirstBill
-	PRINT @idSeconrdBill
-	PRINT '-----------'
-
-	SELECT id INTO IDBillInfoTable FROM BillInfo WHERE idBill = @idSeconrdBill
-	
-	UPDATE BillInfo SET idBill = @idSeconrdBill WHERE idBill = @idFirstBill
-	
-	UPDATE BillInfo SET idBill = @idFirstBill WHERE id IN (SELECT * FROM IDBillInfoTable)
-	
-	DROP TABLE IDBillInfoTable
-	
-	IF (@isFirstTablEmty = 0)
-		UPDATE TableFood SET status = N'Trống' WHERE id = @idTable2
-		
-	IF (@isSecondTablEmty= 0)
-		UPDATE TableFood SET status = N'Trống' WHERE id = @idTable1
-END
-GO
-
-
-
-*/
 
 CREATE PROC USP_InsertBill
 @idTable INT
@@ -492,8 +307,10 @@ END
 GO
 
 DELETE BillInfo
+GO
 
 DELETE Bill
+GO
 
 CREATE TRIGGER UTG_UpdateBillInfo
 ON dbo.BillInfo FOR INSERT, UPDATE
@@ -553,11 +370,7 @@ BEGIN
 END
 GO
 
-ALTER TABLE Bill
-ADD discount INT
 
-UPDATE Bill SET discount = 0
-GO
 
 
 CREATE PROC USP_SwitchTabel
@@ -644,17 +457,11 @@ END
 GO
 
 
-
-
-
-
-
-
 ALTER TABLE dbo.Bill ADD totalPrice FLOAT
+GO
 
 DELETE dbo.BillInfo
 DELETE dbo.Bill
-
 GO
 
 CREATE PROC USP_GetListBillByDate
@@ -688,9 +495,6 @@ BEGIN
 END
 GO
 
-
-
-
 CREATE TRIGGER UTG_DeleteBillInfo
 ON dbo.BillInfo FOR DELETE
 AS 
@@ -711,8 +515,9 @@ BEGIN
 END
 GO
 
-CREATE FUNCTION [dbo].[fuConvertToUnsign1] ( @strInput NVARCHAR(4000) ) RETURNS NVARCHAR(4000) AS BEGIN IF @strInput IS NULL RETURN @strInput IF @strInput = '' RETURN @strInput DECLARE @RT NVARCHAR(4000) DECLARE @SIGN_CHARS NCHAR(136) DECLARE @UNSIGN_CHARS NCHAR (136) SET @SIGN_CHARS = N'ăâđêôơưàảãạáằẳẵặắầẩẫậấèẻẽẹéềểễệế ìỉĩịíòỏõọóồổỗộốờởỡợớùủũụúừửữựứỳỷỹỵý ĂÂĐÊÔƠƯÀẢÃẠÁẰẲẴẶẮẦẨẪẬẤÈẺẼẸÉỀỂỄỆẾÌỈĨỊÍ ÒỎÕỌÓỒỔỖỘỐỜỞỠỢỚÙỦŨỤÚỪỬỮỰỨỲỶỸỴÝ' +NCHAR(272)+ NCHAR(208) SET @UNSIGN_CHARS = N'aadeoouaaaaaaaaaaaaaaaeeeeeeeeee iiiiiooooooooooooooouuuuuuuuuuyyyyy AADEOOUAAAAAAAAAAAAAAAEEEEEEEEEEIIIII OOOOOOOOOOOOOOOUUUUUUUUUUYYYYYDD' DECLARE @COUNTER int DECLARE @COUNTER1 int SET @COUNTER = 1 WHILE (@COUNTER <=LEN(@strInput)) BEGIN SET @COUNTER1 = 1 WHILE (@COUNTER1 <=LEN(@SIGN_CHARS)+1) BEGIN IF UNICODE(SUBSTRING(@SIGN_CHARS, @COUNTER1,1)) = UNICODE(SUBSTRING(@strInput,@COUNTER ,1) ) BEGIN IF @COUNTER=1 SET @strInput = SUBSTRING(@UNSIGN_CHARS, @COUNTER1,1) + SUBSTRING(@strInput, @COUNTER+1,LEN(@strInput)-1) ELSE SET @strInput = SUBSTRING(@strInput, 1, @COUNTER-1) +SUBSTRING(@UNSIGN_CHARS, @COUNTER1,1) + SUBSTRING(@strInput, @COUNTER+1,LEN(@strInput)- @COUNTER) BREAK END SET @COUNTER1 = @COUNTER1 +1 END SET @COUNTER = @COUNTER +1 END SET @strInput = replace(@strInput,' ','-') RETURN @strInput END
-
+CREATE FUNCTION [dbo].[fuConvertToUnsign1] ( @strInput NVARCHAR(4000) ) 
+RETURNS NVARCHAR(4000) AS BEGIN IF @strInput IS NULL RETURN @strInput IF @strInput = '' RETURN @strInput DECLARE @RT NVARCHAR(4000) DECLARE @SIGN_CHARS NCHAR(136) DECLARE @UNSIGN_CHARS NCHAR (136) SET @SIGN_CHARS = N'ăâđêôơưàảãạáằẳẵặắầẩẫậấèẻẽẹéềểễệế ìỉĩịíòỏõọóồổỗộốờởỡợớùủũụúừửữựứỳỷỹỵý ĂÂĐÊÔƠƯÀẢÃẠÁẰẲẴẶẮẦẨẪẬẤÈẺẼẸÉỀỂỄỆẾÌỈĨỊÍ ÒỎÕỌÓỒỔỖỘỐỜỞỠỢỚÙỦŨỤÚỪỬỮỰỨỲỶỸỴÝ' +NCHAR(272)+ NCHAR(208) SET @UNSIGN_CHARS = N'aadeoouaaaaaaaaaaaaaaaeeeeeeeeee iiiiiooooooooooooooouuuuuuuuuuyyyyy AADEOOUAAAAAAAAAAAAAAAEEEEEEEEEEIIIII OOOOOOOOOOOOOOOUUUUUUUUUUYYYYYDD' DECLARE @COUNTER int DECLARE @COUNTER1 int SET @COUNTER = 1 WHILE (@COUNTER <=LEN(@strInput)) BEGIN SET @COUNTER1 = 1 WHILE (@COUNTER1 <=LEN(@SIGN_CHARS)+1) BEGIN IF UNICODE(SUBSTRING(@SIGN_CHARS, @COUNTER1,1)) = UNICODE(SUBSTRING(@strInput,@COUNTER ,1) ) BEGIN IF @COUNTER=1 SET @strInput = SUBSTRING(@UNSIGN_CHARS, @COUNTER1,1) + SUBSTRING(@strInput, @COUNTER+1,LEN(@strInput)-1) ELSE SET @strInput = SUBSTRING(@strInput, 1, @COUNTER-1) +SUBSTRING(@UNSIGN_CHARS, @COUNTER1,1) + SUBSTRING(@strInput, @COUNTER+1,LEN(@strInput)- @COUNTER) BREAK END SET @COUNTER1 = @COUNTER1 +1 END SET @COUNTER = @COUNTER +1 END SET @strInput = replace(@strInput,' ','-') RETURN @strInput END
+GO
 
 
 

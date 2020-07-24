@@ -102,6 +102,7 @@
             this.panel24 = new System.Windows.Forms.Panel();
             this.btnResetPasswod = new System.Windows.Forms.Button();
             this.panel26 = new System.Windows.Forms.Panel();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.panel27 = new System.Windows.Forms.Panel();
             this.txbDisplayName = new System.Windows.Forms.TextBox();
@@ -111,7 +112,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.panel29 = new System.Windows.Forms.Panel();
             this.dtgvAccount = new System.Windows.Forms.DataGridView();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.tcAdmin.SuspendLayout();
             this.tpBill.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -147,11 +147,11 @@
             this.panel23.SuspendLayout();
             this.panel24.SuspendLayout();
             this.panel26.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel27.SuspendLayout();
             this.panel28.SuspendLayout();
             this.panel29.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvAccount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // tcAdmin
@@ -871,6 +871,18 @@
             this.panel26.Size = new System.Drawing.Size(371, 46);
             this.panel26.TabIndex = 3;
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(154, 12);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(40, 26);
+            this.numericUpDown1.TabIndex = 1;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -952,18 +964,6 @@
             this.dtgvAccount.Size = new System.Drawing.Size(495, 510);
             this.dtgvAccount.TabIndex = 0;
             // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(154, 12);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(40, 26);
-            this.numericUpDown1.TabIndex = 1;
-            // 
             // fAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1019,13 +1019,13 @@
             this.panel24.ResumeLayout(false);
             this.panel26.ResumeLayout(false);
             this.panel26.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.panel27.ResumeLayout(false);
             this.panel27.PerformLayout();
             this.panel28.ResumeLayout(false);
             this.panel28.PerformLayout();
             this.panel29.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvAccount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
